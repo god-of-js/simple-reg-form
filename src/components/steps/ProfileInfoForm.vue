@@ -26,23 +26,27 @@ function goNext() {
       <h1 class="font-poppins mb-4 text-8 font-bold leading-[50px]">
         Profile Info
       </h1>
-      <p class="text-4 font-thin text-gray-700 dark:text-gray-400">
-        Fill in the registration data. It will take a couple of minutes.
-        All you need is an email and password.
+      <p class="text-4 font-thin text-gray-400">
+        Fill in the data for profile. It will take a couple of minutes. You only need a passport
       </p>
     </header>
-    <TheAlert>
-      <template #prepend>
-        <div i-carbon-locked class="text-6" />
-      </template>
-      We take privacy issues seriously. You can be sure that your personal data is securely protected.
-    </TheAlert>
     <TheForm :form-data="data" :rules="formRules" @form-submit="goNext">
       <template #default="{ formErrors }">
         <div>
           <div class="app-border grid mb-8 gap-8 rounded-lg pa-6">
-            <TheInput v-model="data.email" label="Please enter your email" :error="formErrors.email" name="email" />
-            <TheInput v-model="data.password" label="Please enter your password" :error="formErrors.password" type="password" name="password" />
+            <div>
+              <h2 class="font-poppins text-5 font-600 text-gray-900">
+                Personal data
+              </h2>
+              <p class="text-3 font-thin text-gray-400">
+                Specify exactly as passport
+              </p>
+            </div>
+            <TheInput v-model="data.email" label="First Name" :error="formErrors.email" name="email" />
+            <TheInput v-model="data.password" label="Last Name" :error="formErrors.password" type="password" name="password" />
+            <div class="">
+              loreemm
+            </div>
           </div>
           <TheButton class="w-fit" :loading="loading">
             Go Next <span i-carbon-arrow-right />

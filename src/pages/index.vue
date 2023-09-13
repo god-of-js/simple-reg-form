@@ -9,8 +9,8 @@ defineOptions({
 
 const steps = {
   RegistrationForm,
-  LocationInfoForm,
   ProfileInfoForm,
+  LocationInfoForm,
 }
 
 type StepKeys = keyof typeof steps
@@ -28,7 +28,7 @@ function goNext() {
 </script>
 
 <template>
-  <div class="mx-auto mb-20 md:w-70%">
+  <div class="mx-auto mb-20 md:w-65%">
     <div class="flex items-center gap-2 md:fixed">
       <div i-carbon-campsite text-xl />
       <span>PROJECT X</span>

@@ -6,6 +6,7 @@ import { mount } from '@vue/test-utils'
 
 import { required } from '@vuelidate/validators'
 
+import type { ValidationArgs } from '@vuelidate/core'
 import TheForm from './TheForm.vue'
 
 describe('src/components/TheButton.vue', () => {
@@ -15,7 +16,7 @@ describe('src/components/TheButton.vue', () => {
         formData: {
           name: 'henry',
         },
-        rules: { name: [required] },
+        rules: { name: [required] } as ValidationArgs,
       },
     })
 
