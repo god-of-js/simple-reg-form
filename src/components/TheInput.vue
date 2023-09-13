@@ -3,6 +3,8 @@ interface Props {
   type?: 'text' | 'password' | 'tel'
   error?: string
   modelValue: string
+  name: string
+  suggestion?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
@@ -22,14 +24,16 @@ const inputValue = computed({
 </script>
 
 <template>
-  <input
-    id="input"
-    v-model="inputValue"
-    :type="props.type"
-    v-bind="$attrs"
-    class="w-full b-0 b-b-1 b-gray-200 text-left dark:b-gray-700" :class="[{ 'b-red': !!props.error }]"
-    p="x-4 y-2"
-    bg="transparent"
-    outline="none active:none"
-  >
+  <TheField :name="props.name" :error="props.error" :suggestion="props.suggestion">
+    <input
+      :id="props.name"
+      v-model="inputValue"
+      :type="props.type"
+      v-bind="$attrs"
+      class="app-border w-full b-0 b-b-1 text-left" :class="[{ 'b-red': !!props.error }]"
+      p="x-4 y-2"
+      bg="transparent"
+      outline="none active:none"
+    >
+  </TheField>
 </template>

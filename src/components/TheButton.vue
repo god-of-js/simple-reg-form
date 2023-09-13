@@ -10,7 +10,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <button class="rounded px-4 py-3" :disabled="props.disabled" border="~ rounded gray-200 dark:gray-700" @click="emit('click')">
+  <button class="app-border flex items-center gap-4 rounded px-4 py-3" :disabled="props.disabled" @click="emit('click')">
     <span v-if="props.loading">Loading...</span>
     <slot v-else />
   </button>

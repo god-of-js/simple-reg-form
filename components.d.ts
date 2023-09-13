@@ -9,13 +9,18 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    LocationInfoForm: typeof import('./src/components/steps/LocationInfoForm.vue')['default']
+    ProfileInfoForm: typeof import('./src/components/steps/ProfileInfoForm.vue')['default']
+    RegistrationForm: typeof import('./src/components/steps/RegistrationForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TheAlert: typeof import('./src/components/TheAlert.vue')['default']
     TheButton: typeof import('./src/components/TheButton.vue')['default']
-    TheCard: typeof import('./src/components/TheCard.vue')['default']
     TheCounter: typeof import('./src/components/TheCounter.vue')['default']
+    TheField: typeof import('./src/components/TheField.vue')['default']
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheForm: typeof import('./src/components/TheForm.vue')['default']
     TheInput: typeof import('./src/components/TheInput.vue')['default']
+    TheStepper: typeof import('./src/components/TheStepper.vue')['default']
   }
 }

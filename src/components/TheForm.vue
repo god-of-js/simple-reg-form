@@ -29,11 +29,9 @@ function validateAndSubmit() {
 }
 
 const formErrors = computed(() => {
-  const errorList: Record<string, string[]> = {}
+  const errorList: Record<string, string> = {}
   v$.value.$errors.forEach((err) => {
-    errorList[err.$propertyPath] = [
-      typeof err.$message === 'string' ? err.$message : err.$message.value,
-    ]
+    errorList[err.$propertyPath] = typeof err.$message === 'string' ? err.$message : err.$message.value
   })
   return errorList
 })
