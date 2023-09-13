@@ -16,6 +16,15 @@ const steps = {
 type StepKeys = keyof typeof steps
 const stepKeys = Object.keys(steps) as StepKeys[]
 const activeStep = ref<StepKeys>(stepKeys[0])
+
+function goNext() {
+  const indexOfActiveStep = stepKeys.findIndex(step => activeStep.value === step)
+
+  if (indexOfActiveStep < stepKeys.length - 1)
+    activeStep.value = stepKeys[indexOfActiveStep + 1]
+  // eslint-disable-next-line no-alert
+  else alert('Forms completed') // Ignore the alert and the disabled eslint rule. I need it for only this line.
+}
 </script>
 
 <template>
@@ -29,7 +38,7 @@ const activeStep = ref<StepKeys>(stepKeys[0])
 
       <div class="my-20">
         <KeepAlive>
-          <Component :is="steps[activeStep]" />
+          <Component :is="steps[activeStep]" @go-to-next="goNext" />
         </KeepAlive>
       </div>
     </div>
