@@ -10,6 +10,7 @@ describe('src/components/TheInput', () => {
     const wrapper = mount(TheInput, {
       props: {
         modelValue: '',
+        name: 'input',
       },
     })
 
@@ -25,6 +26,7 @@ describe('src/components/TheInput', () => {
       props: {
         modelValue: '',
         error: 'Something went wrong',
+        name: 'input',
       },
     })
 
@@ -37,6 +39,7 @@ describe('src/components/TheInput', () => {
     const wrapper = mount(TheInput, {
       props: {
         modelValue: '',
+        name: 'input',
       },
     })
 
