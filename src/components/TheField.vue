@@ -9,8 +9,8 @@ const props = defineProps<Props>()
 </script>
 
 <template>
-  <div class="w-full">
-    <label :for="props.name">{{ props.label }}</label>
+  <div class="w-full text-left">
+    <label :for="props.name" class="text-left text-3">{{ props.label }}</label>
     <slot />
     <div v-if="props.error" class="text-left text-3 text-red">
       {{ props.error }}

@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { required } from '@vuelidate/validators'
+import { email, minLength, required } from '@vuelidate/validators'
 
 const data = ref({
   email: '',
+  password: '',
 })
 const formRules = {
-  email: [required],
+  email: [required, email],
+  password: [required, minLength(32)],
 }
 function goNext() {}
 </script>
@@ -30,8 +32,9 @@ function goNext() {}
     <TheForm :form-data="data" :rules="formRules" @form-submit="goNext">
       <template #default="{ formErrors }">
         <div>
-          <div class="app-border mb-8 rounded-lg pa-6">
-            <TheInput v-model="data.email" :error="formErrors.email" name="email" />
+          <div class="app-border grid mb-8 gap-8 rounded-lg pa-6">
+            <TheInput v-model="data.email" label="Please enter your email" :error="formErrors.email" name="email" />
+            <TheInput v-model="data.password" label="Please enter your password" :error="formErrors.password" type="password" name="password" />
           </div>
           <TheButton class="w-fit">
             Go Next <span i-carbon-arrow-right />
