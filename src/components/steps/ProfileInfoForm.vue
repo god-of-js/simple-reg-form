@@ -8,14 +8,14 @@ import useDelay from '~/composables/useDelay'
 const emit = defineEmits<{ (e: 'goToNext'): void }>()
 const { delay, loading } = useDelay()
 const data = ref({
-  email: '',
-  password: '',
+  firstName: '',
+  lastName: '',
   dateOfBirth: dayjs(),
   placeOfBirth: '',
 })
 const formRules = {
   firstName: [required],
-  secondName: [required],
+  lastName: [required],
   dateOfBirth: [required],
   placeOfBirth: [required],
 }
@@ -46,7 +46,7 @@ const locationOptions = [
   },
 ]
 function goNext() {
-  delay(10).then(() => {
+  delay(2).then(() => {
     emit('goToNext')
   })
 }
@@ -74,14 +74,14 @@ function goNext() {
                 Specify exactly as passport
               </p>
             </div>
-            <TheInput v-model="data.email" label="First Name" :error="formErrors.firstName" name="email" />
-            <TheInput v-model="data.password" label="Last Name" :error="formErrors.lastName" type="password" name="password" />
+            <TheInput v-model="data.firstName" label="First Name" :error="formErrors.firstName" name="firstName" />
+            <TheInput v-model="data.lastName" label="Last Name" :error="formErrors.lastName" name="lastName" />
             <div class="grid-2 grid gap-4">
               <TheDatePicker v-model="data.dateOfBirth" :error="formErrors.dateOfBirth" label="Date of Birth" name="dateOfBirth" />
-              <TheSelect v-model="data.placeOfBirth" :options="locationOptions" name="placeOfBirth" label="Place of Birth" />
+              <TheSelect v-model="data.placeOfBirth" :error="formErrors.placeOfBirth" :options="locationOptions" name="placeOfBirth" label="Place of Birth" />
             </div>
           </div>
-          <TheButton class="w-fit" :loading="loading">
+          <TheButton class="mx-auto w-fit md:m-0" :loading="loading">
             Go Next <span i-carbon-arrow-right />
           </TheButton>
         </div>
@@ -91,7 +91,9 @@ function goNext() {
 </template>
 
 <style scoped>
-.grid-2 {
-  grid-template-columns: repeat(2, 1fr)
+@media screen and (min-width: 600px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr)
+  }
 }
 </style>

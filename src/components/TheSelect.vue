@@ -34,7 +34,9 @@ function sendSelection(e: string) {
 <template>
   <TheField :error="props.error" :label="props.label" :name="props.name" class="relative">
     <TheButton type="button" class="w-full justify-between b-l-0 b-r-0 b-t-0 rounded-none" @click="optionsAreVisible = !optionsAreVisible">
-      {{ selectedOption ? selectedOption.label : 'Select an option' }} <div v-if="optionsAreVisible" i-carbon-caret-up /><div v-else i-carbon-caret-down />
+      {{ selectedOption ? selectedOption.label : 'Select an option' }}
+      <div v-if="optionsAreVisible" i-carbon-caret-up />
+      <div v-else i-carbon-caret-down />
     </TheButton>
     <ul v-if="optionsAreVisible" class="absolute z-1 w-full bg-white">
       <li v-for="(option, index) in props.options" :key="index" class="cursor-pointer pa-2 hover:bg-gray-300" @click="sendSelection(option.value)">

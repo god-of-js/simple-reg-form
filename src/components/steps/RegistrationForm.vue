@@ -23,7 +23,7 @@ function goNext() {
 <template>
   <div class="flex flex-col gap-8 text-center md:text-left">
     <header>
-      <h1 class="font-poppins mb-4 text-8 font-bold leading-[50px]">
+      <h1 class="mb-4 font-poppins text-8 font-bold leading-[50px]">
         Registration
       </h1>
       <p class="text-4 font-thin text-gray-400">
@@ -40,7 +40,7 @@ function goNext() {
     <TheForm :form-data="data" :rules="formRules" @form-submit="goNext">
       <template #default="{ formErrors }">
         <div>
-          <div class="app-border grid mb-8 gap-8 rounded-lg pa-8">
+          <div class="grid mb-8 gap-8 rounded-lg pa-8 app-border">
             <TheInput v-model="data.email" label="Please enter your email" :error="formErrors.email" name="email" />
             <TheInput v-model="data.password" label="Please enter your password" :error="formErrors.password" type="password" name="password" />
           </div>

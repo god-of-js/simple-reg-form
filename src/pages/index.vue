@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends any, O extends any">
-import LocationInfoForm from '~/components/steps/LocationInfoForm.vue'
+import ContactsForm from '~/components/steps/ContactsForm.vue'
 import RegistrationForm from '~/components/steps/RegistrationForm.vue'
 import ProfileInfoForm from '~/components/steps/ProfileInfoForm.vue'
 
@@ -10,12 +10,12 @@ defineOptions({
 const steps = {
   RegistrationForm,
   ProfileInfoForm,
-  LocationInfoForm,
+  ContactsForm,
 }
 
 type StepKeys = keyof typeof steps
 const stepKeys = Object.keys(steps) as StepKeys[]
-const activeStep = ref<StepKeys>(stepKeys[1])
+const activeStep = ref<StepKeys>(stepKeys[0])
 
 function goNext() {
   const indexOfActiveStep = stepKeys.findIndex(step => activeStep.value === step)

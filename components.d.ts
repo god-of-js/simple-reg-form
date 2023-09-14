@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     CalendarWidgetDayItem: typeof import('./src/components/CalendarWidgetDayItem.vue')['default']
     CalendarWidgetMonthNavigator: typeof import('./src/components/CalendarWidgetMonthNavigator.vue')['default']
     CalendarWidgetWeekDays: typeof import('./src/components/CalendarWidgetWeekDays.vue')['default']
+    ContactsForm: typeof import('./src/components/steps/ContactsForm.vue')['default']
     LocationInfoForm: typeof import('./src/components/steps/LocationInfoForm.vue')['default']
     ProfileInfoForm: typeof import('./src/components/steps/ProfileInfoForm.vue')['default']
     RegistrationForm: typeof import('./src/components/steps/RegistrationForm.vue')['default']

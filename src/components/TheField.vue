@@ -10,17 +10,13 @@ const props = defineProps<Props>()
 
 <template>
   <div class="w-full text-left">
-    <label :for="props.name" class="text-left text-3">{{ props.label }}</label>
+    <label v-if="props.label" :for="props.name" class="text-left text-3">{{ props.label }}</label>
     <slot />
-    <div v-if="props.error" class="text-left text-3 text-red">
+    <div v-if="props.error" class="error-text text-left text-3 text-red">
       {{ props.error }}
     </div>
     <div v-if="props.suggestion" class="text-left text-3">
-      {{ props.error }}
+      {{ props.suggestion }}
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>
