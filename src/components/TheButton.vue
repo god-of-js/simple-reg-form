@@ -2,15 +2,18 @@
 interface Props {
   loading?: boolean
   disabled?: boolean
+  type?: 'button' | 'submit'
 }
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  type: 'submit',
+})
 const emit = defineEmits<{
   (e: 'click'): void
 }>()
 </script>
 
 <template>
-  <button class="app-border flex items-center gap-4 rounded px-4 py-3" :disabled="props.disabled" @click="emit('click')">
+  <button class="flex items-center gap-4 rounded px-4 py-3 app-border" :type="props.type" :disabled="props.disabled" @click="emit('click')">
     <span v-if="props.loading">Loading...</span>
     <slot v-else />
   </button>

@@ -9,6 +9,10 @@ import CalenderWidgetDayItem from './CalendarWidgetDayItem.vue'
 import CalenderWidgetMonthNavigator from './CalendarWidgetMonthNavigator.vue'
 import CalendarWidgetWeekDays from './CalendarWidgetWeekDays.vue'
 
+interface Props {
+  modelValue: Dayjs
+  data?: { date: string | Dayjs; name: string; [key: string]: unknown }[]
+}
 const props = defineProps<Props>()
 const emit = defineEmits<{
   (e: 'update:modelValue', val: Dayjs): void
@@ -17,13 +21,11 @@ const emit = defineEmits<{
 dayjs.extend(weekday)
 dayjs.extend(weekOfYear)
 
-interface Props {
-  modelValue: Dayjs
-  data?: { date: string | Dayjs; name: string; [key: string]: unknown }[]
-}
 const today = dayjs().format('YYYY-MM-DD')
+
+const activeMonthDayReference = ref(props.modelValue)
 const activeDate = computed(() => {
-  return props.modelValue || dayjs()
+  return activeMonthDayReference.value || dayjs()
 })
 
 const yearOfActiveDate = computed(() => {
@@ -97,22 +99,22 @@ const visibleDays = computed(() => [
   ...visibleDaysInNextMonth.value,
 ])
 
-function selectDate(date: Dayjs) {
-  emit('update:modelValue', date)
+function selectMonth(date: Dayjs) {
+  activeMonthDayReference.value = date
 }
 
 function getWeekday(date: Dayjs | string) {
   return dayjs(date).weekday()
 }
 
-function triggerWithDate(e: Dayjs) {
-  emit('triggerWithDateClicked', e)
+function selectDay(e: Dayjs) {
+  emit('update:modelValue', e)
 }
 </script>
 
 <template>
   <div class="calendar">
-    <CalenderWidgetMonthNavigator :selected-date="activeDate" @select-date="selectDate" />
+    <CalenderWidgetMonthNavigator :selected-date="activeMonthDayReference" @select-month="selectMonth" />
     <CalendarWidgetWeekDays />
     <ol class="grid-7 grid">
       <CalenderWidgetDayItem
@@ -121,7 +123,7 @@ function triggerWithDate(e: Dayjs) {
         :is-today="day.date.format('YYYY-MM-DD') === today"
         :day="day.date"
         :is-current-month="day.isCurrentMonth"
-        @date-clicked="triggerWithDate"
+        @date-clicked="selectDay"
       />
     </ol>
   </div>

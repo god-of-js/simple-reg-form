@@ -8,7 +8,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits<{
-  (e: 'selectDate', val: Dayjs): void
+  (e: 'selectMonth', val: Dayjs): void
 }>()
 const selectedMonth = computed(() => {
   return props.selectedDate.format('MMMM YYYY')
@@ -16,22 +16,22 @@ const selectedMonth = computed(() => {
 
 function goToPrevMonth() {
   const newSelectedDate = dayjs(props.selectedDate).subtract(1, 'month')
-  emit('selectDate', newSelectedDate)
+  emit('selectMonth', newSelectedDate)
 }
 
 function goToNextMonth() {
   const newSelectedDate = dayjs(props.selectedDate).add(1, 'month')
-  emit('selectDate', newSelectedDate)
+  emit('selectMonth', newSelectedDate)
 }
 </script>
 
 <template>
-  <div class="align-center flex justify-center gap-8 pa-4">
-    <button class="icon-btn" @click="goToPrevMonth">
+  <div class="align-center flex justify-center gap-8 py-4">
+    <button class="icon-btn" @click.prevent="goToPrevMonth">
       <div i-carbon-arrow-left />
     </button>
-    <span class="month-details">{{ selectedMonth }}</span>
-    <button class="icon-btn" @click="goToNextMonth">
+    <span class="text-4">{{ selectedMonth }}</span>
+    <button class="icon-btn" @click.prevent="goToNextMonth">
       <div i-carbon-arrow-right />
     </button>
   </div>

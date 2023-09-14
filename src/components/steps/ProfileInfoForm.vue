@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { email, minLength, required } from '@vuelidate/validators'
+import { required } from '@vuelidate/validators'
+import dayjs from 'dayjs'
 
+import TheDatePicker from '../TheDatePicker.vue'
 import useDelay from '~/composables/useDelay'
 
 const emit = defineEmits<{ (e: 'goToNext'): void }>()
@@ -8,11 +10,41 @@ const { delay, loading } = useDelay()
 const data = ref({
   email: '',
   password: '',
+  dateOfBirth: dayjs(),
+  placeOfBirth: '',
 })
 const formRules = {
-  email: [required, email],
-  password: [required, minLength(32)],
+  firstName: [required],
+  secondName: [required],
+  dateOfBirth: [required],
+  placeOfBirth: [required],
 }
+const locationOptions = [
+  {
+    label: 'United States',
+    value: 'usa',
+  },
+  {
+    label: 'United Kingdom',
+    value: 'uk',
+  },
+  {
+    label: 'Germany',
+    value: 'de',
+  },
+  {
+    label: 'Russia',
+    value: 'ru',
+  },
+  {
+    label: 'Nigeria',
+    value: 'ng',
+  },
+  {
+    label: 'South Africa',
+    value: 'sa',
+  },
+]
 function goNext() {
   delay(10).then(() => {
     emit('goToNext')
@@ -23,7 +55,7 @@ function goNext() {
 <template>
   <div class="flex flex-col gap-8 text-center md:text-left">
     <header>
-      <h1 class="font-poppins mb-4 text-8 font-bold leading-[50px]">
+      <h1 class="mb-4 font-poppins text-8 font-bold leading-[50px]">
         Profile Info
       </h1>
       <p class="text-4 font-thin text-gray-400">
@@ -33,7 +65,7 @@ function goNext() {
     <TheForm :form-data="data" :rules="formRules" @form-submit="goNext">
       <template #default="{ formErrors }">
         <div>
-          <div class="app-border grid mb-8 gap-8 rounded-lg pa-6">
+          <div class="grid mb-8 gap-8 rounded-lg pa-6 app-border">
             <div>
               <h2 class="font-poppins text-5 font-600 text-gray-900">
                 Personal data
@@ -42,10 +74,11 @@ function goNext() {
                 Specify exactly as passport
               </p>
             </div>
-            <TheInput v-model="data.email" label="First Name" :error="formErrors.email" name="email" />
-            <TheInput v-model="data.password" label="Last Name" :error="formErrors.password" type="password" name="password" />
-            <div class="">
-              loreemm
+            <TheInput v-model="data.email" label="First Name" :error="formErrors.firstName" name="email" />
+            <TheInput v-model="data.password" label="Last Name" :error="formErrors.lastName" type="password" name="password" />
+            <div class="grid-2 grid gap-4">
+              <TheDatePicker v-model="data.dateOfBirth" :error="formErrors.dateOfBirth" label="Date of Birth" name="dateOfBirth" />
+              <TheSelect v-model="data.placeOfBirth" :options="locationOptions" name="placeOfBirth" label="Place of Birth" />
             </div>
           </div>
           <TheButton class="w-fit" :loading="loading">
@@ -58,5 +91,7 @@ function goNext() {
 </template>
 
 <style scoped>
-
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr)
+}
 </style>

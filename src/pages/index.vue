@@ -1,5 +1,4 @@
 <script setup lang="ts" generic="T extends any, O extends any">
-import dayjs from 'dayjs'
 import LocationInfoForm from '~/components/steps/LocationInfoForm.vue'
 import RegistrationForm from '~/components/steps/RegistrationForm.vue'
 import ProfileInfoForm from '~/components/steps/ProfileInfoForm.vue'
@@ -16,8 +15,7 @@ const steps = {
 
 type StepKeys = keyof typeof steps
 const stepKeys = Object.keys(steps) as StepKeys[]
-const activeStep = ref<StepKeys>(stepKeys[0])
-const day = ref(dayjs())
+const activeStep = ref<StepKeys>(stepKeys[1])
 
 function goNext() {
   const indexOfActiveStep = stepKeys.findIndex(step => activeStep.value === step)
@@ -43,7 +41,6 @@ function goNext() {
           <Component :is="steps[activeStep]" @go-to-next="goNext" />
         </KeepAlive>
       </div>
-      <CalendarWidget v-model="day" />
     </div>
   </div>
 </template>
