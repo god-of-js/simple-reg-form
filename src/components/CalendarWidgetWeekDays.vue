@@ -4,7 +4,7 @@ const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 <template>
   <ul class="grid-7 grid">
-    <li v-for="(weekday, index) in weekdays" :key="index" class="text-4">
+    <li v-for="(weekday, index) in weekdays" :key="index" class="p-1 text-center text-3">
       {{ weekday }}
     </li>
   </ul>

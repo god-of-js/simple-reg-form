@@ -38,7 +38,7 @@ function sendSelection(e: string) {
       <div v-if="optionsAreVisible" i-carbon-caret-up />
       <div v-else i-carbon-caret-down />
     </TheButton>
-    <ul v-if="optionsAreVisible" class="absolute z-1 w-full bg-white">
+    <ul v-if="optionsAreVisible" class="absolute z-1 w-full bg-white shadow">
       <li v-for="(option, index) in props.options" :key="index" class="cursor-pointer pa-2 hover:bg-gray-300" @click="sendSelection(option.value)">
         {{ option.label }}
       </li>
@@ -47,5 +47,7 @@ function sendSelection(e: string) {
 </template>
 
 <style scoped>
-
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+}
 </style>
