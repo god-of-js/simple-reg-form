@@ -9,6 +9,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CalendarWidget: typeof import('./src/components/CalendarWidget.vue')['default']
+    CalendarWidgetDayItem: typeof import('./src/components/CalendarWidgetDayItem.vue')['default']
+    CalendarWidgetMonthNavigator: typeof import('./src/components/CalendarWidgetMonthNavigator.vue')['default']
+    CalendarWidgetWeekDays: typeof import('./src/components/CalendarWidgetWeekDays.vue')['default']
     LocationInfoForm: typeof import('./src/components/steps/LocationInfoForm.vue')['default']
     ProfileInfoForm: typeof import('./src/components/steps/ProfileInfoForm.vue')['default']
     RegistrationForm: typeof import('./src/components/steps/RegistrationForm.vue')['default']
@@ -17,6 +21,7 @@ declare module '@vue/runtime-core' {
     TheAlert: typeof import('./src/components/TheAlert.vue')['default']
     TheButton: typeof import('./src/components/TheButton.vue')['default']
     TheCounter: typeof import('./src/components/TheCounter.vue')['default']
+    TheDatePicker: typeof import('./src/components/TheDatePicker.vue')['default']
     TheField: typeof import('./src/components/TheField.vue')['default']
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheForm: typeof import('./src/components/TheForm.vue')['default']

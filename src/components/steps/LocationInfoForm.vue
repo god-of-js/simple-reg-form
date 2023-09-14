@@ -49,14 +49,11 @@ function goNext() {
             <TheInput v-model="data.password" label="Please enter your password" :error="formErrors.password" type="password" name="password" />
           </div>
           <TheButton class="w-fit" :loading="loading">
-            Go Next <span i-carbon-arrow-right />
+            <div i-carbon-check-mark />
+            Save
           </TheButton>
         </div>
       </template>
     </TheForm>
   </div>
 </template>
-
-<style scoped>
-
-</style>
