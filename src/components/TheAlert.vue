@@ -1,5 +1,5 @@
 <template>
-  <div class="font-poppins flex items-start justify-between gap-4 rounded bg-gray-100 pa-4 text-left text-3 dark:bg-gray-600">
+  <div class="flex items-start justify-between gap-4 rounded bg-gray-100 pa-4 text-left font-poppins text-3 dark:bg-gray-600">
     <span id="prepend-slot">
 
       <slot name="prepend" />
