@@ -33,7 +33,7 @@ function sendSelection(e: string) {
 
 <template>
   <TheField :error="props.error" :label="props.label" :name="props.name" class="relative">
-    <TheButton type="button" class="w-full justify-between b-l-0 b-r-0 b-t-0 rounded-none" @click="optionsAreVisible = !optionsAreVisible">
+    <TheButton type="button" class="w-full justify-between rounded-none" bordered-only-on-bottom no-border-radius @click="optionsAreVisible = !optionsAreVisible">
       {{ selectedOption ? selectedOption.label : 'Select an option' }}
       <div v-if="optionsAreVisible" i-carbon-caret-up />
       <div v-else i-carbon-caret-down />

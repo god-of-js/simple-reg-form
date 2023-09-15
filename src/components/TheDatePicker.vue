@@ -32,7 +32,7 @@ const displayValue = computed(() => {
 
 <template>
   <TheField :error="props.error" :label="props.label" :name="props.name" class="relative">
-    <TheButton type="button" class="w-full justify-between b-l-0 b-r-0 b-t-0 rounded-none" @click="calendarIsVisible = !calendarIsVisible">
+    <TheButton type="button" class="w-full justify-between" bordered-only-on-bottom no-border-radius @click="calendarIsVisible = !calendarIsVisible">
       {{ displayValue }} <div v-if="calendarIsVisible" i-carbon-caret-up /><div v-else i-carbon-caret-down />
     </TheButton>
     <div v-if="calendarIsVisible" class="absolute z-1 bg-white shadow">
