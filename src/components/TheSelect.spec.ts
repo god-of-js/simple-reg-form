@@ -46,6 +46,24 @@ describe('src/components/TheSelect', () => {
     const optionList = wrapper.find('ul')
     expect(optionList.exists()).toBe(true)
   })
+  it('Search through options is functional', async () => {
+    const wrapper = mount(TheSelect, {
+      props: {
+        modelValue: '',
+        options,
+        name: 'select',
+      },
+    })
+    await wrapper.find('button').trigger('click')
+
+    const input = wrapper.find('input')
+
+    await input.setValue('United')
+
+    expect(wrapper.find('#usa').exists()).toBe(true)
+    expect(wrapper.find('#uk').exists()).toBe(true)
+    expect(wrapper.find('#sa').exists()).toBe(false)
+  })
   it('Value is sent to parent through model', async () => {
     const wrapper = mount(TheSelect, {
       props: {

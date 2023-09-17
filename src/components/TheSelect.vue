@@ -32,7 +32,7 @@ const filteredOptions = computed(() => {
   if (!searchQuery.value)
     return props.options
 
-  const query = searchQuery.value.toLowerCase().trim()
+  const query = searchQuery.value.toLowerCase()
   return props.options.filter((option) => {
     return option.label.toLowerCase().includes(query)
   })
@@ -41,12 +41,13 @@ const filteredOptions = computed(() => {
 function sendSelection(e: string) {
   if (props.disabled)
     return
-  optionsAreVisible.value = false
+  hideOptionsAndClearSearch()
   emit('update:model-value', e)
 }
 
-function hideOptions() {
+function hideOptionsAndClearSearch() {
   optionsAreVisible.value = false
+  searchQuery.value = ''
 }
 
 function toggleOptions() {
@@ -62,10 +63,7 @@ function toggleOptions() {
   })
 }
 
-onClickOutside(selectRef, () => {
-  hideOptions()
-  searchQuery.value = ''
-})
+onClickOutside(selectRef, hideOptionsAndClearSearch)
 </script>
 
 <template>
@@ -83,8 +81,6 @@ onClickOutside(selectRef, () => {
         v-model="searchQuery"
         class="border-transparent bg-transparent outline-none"
         placeholder="Search Options"
-        @click.stop
-        @keydown.space.prevent
       >
       <span v-else>{{ selectedOption ? selectedOption.label : 'Select an option' }}</span>
       <div v-if="optionsAreVisible" i-carbon-caret-up />
@@ -94,6 +90,7 @@ onClickOutside(selectRef, () => {
       <ul v-if="optionsAreVisible" class="absolute z-1 w-full bg-white shadow">
         <li
           v-for="(option, index) in filteredOptions"
+          :id="option.value"
           :key="index"
           class="cursor-pointer pa-2 hover:bg-gray-300 dark:text-gray-900"
           @click="sendSelection(option.value)"
