@@ -15,7 +15,7 @@ const steps = {
 
 type StepKeys = keyof typeof steps
 const stepKeys = Object.keys(steps) as StepKeys[]
-const activeStep = ref<StepKeys>(stepKeys[0])
+const activeStep = ref<StepKeys>(stepKeys[1])
 
 function goNext() {
   const indexOfActiveStep = stepKeys.findIndex(step => activeStep.value === step)

@@ -35,14 +35,27 @@ const displayValue = computed(() => {
     <TheButton type="button" class="w-full justify-between" bordered-only-on-bottom no-border-radius @click="calendarIsVisible = !calendarIsVisible">
       {{ displayValue }} <div v-if="calendarIsVisible" i-carbon-caret-up /><div v-else i-carbon-caret-down />
     </TheButton>
-    <div v-if="calendarIsVisible" class="absolute z-1 bg-white shadow">
-      <CalendarWidget v-model="calendarValue" />
-    </div>
+    <transition>
+      <div v-if="calendarIsVisible" class="absolute z-1 bg-white shadow">
+        <CalendarWidget v-model="calendarValue" />
+      </div>
+    </transition>
   </TheField>
 </template>
 
 <style scoped>
 .shadow {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
+  margin-top: 0;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  margin-top: -1rem;
 }
 </style>

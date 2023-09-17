@@ -28,7 +28,7 @@ function pickDate() {
 
 <template>
   <li
-    class="day-item cursor-pointer p-1 py-2 text-center text-3" :class="{
+    class="day-item cursor-pointer p-1 py-2 text-center text-3 dark:text-gray-900" :class="{
       'text-gray-300 cursor-not-allowed': !props.isCurrentMonth,
       'is-today text-blue': props.isToday,
     }"

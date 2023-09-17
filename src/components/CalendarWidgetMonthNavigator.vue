@@ -26,7 +26,7 @@ function goToNextMonth() {
 </script>
 
 <template>
-  <div class="align-center flex justify-center gap-8 py-4">
+  <div class="align-center flex justify-center gap-8 py-4 dark:text-gray-900">
     <button class="icon-btn" @click.prevent="goToPrevMonth">
       <div i-carbon-arrow-left />
     </button>
