@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core'
+
 interface Option {
   label: string
   value: string
@@ -17,6 +19,8 @@ const emit = defineEmits<{ (e: 'update:model-value', val: string): void }>()
 
 const optionsAreVisible = ref(false)
 const searchQuery = ref('')
+
+const selectRef = ref<HTMLElement>()
 
 const selectedOption = computed(() => {
   if (!props.modelValue)
@@ -41,6 +45,10 @@ function sendSelection(e: string) {
   emit('update:model-value', e)
 }
 
+function hideOptions() {
+  optionsAreVisible.value = false
+}
+
 function toggleOptions() {
   optionsAreVisible.value = !optionsAreVisible.value
 
@@ -53,10 +61,15 @@ function toggleOptions() {
     inputElement?.focus()
   })
 }
+
+onClickOutside(selectRef, () => {
+  hideOptions()
+  searchQuery.value = ''
+})
 </script>
 
 <template>
-  <TheField :error="props.error" :label="props.label" :name="props.name" class="relative">
+  <TheField ref="selectRef" :error="props.error" :label="props.label" :name="props.name" class="relative">
     <TheButton
       type="button"
       class="w-full justify-between rounded-none"

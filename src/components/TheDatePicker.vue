@@ -12,6 +12,7 @@ const props = defineProps<Props>()
 const emit = defineEmits<{ (e: 'update:model-value', val: Dayjs): void }>()
 
 const calendarIsVisible = ref(false)
+const calendarRef = ref<HTMLElement>()
 const calendarValue = computed({
   set(e: Dayjs) {
     emit('update:model-value', e)
@@ -21,17 +22,19 @@ const calendarValue = computed({
   },
 })
 
-watch(() => calendarValue.value, () => {
-  calendarIsVisible.value = false
-})
-
 const displayValue = computed(() => {
   return props.modelValue.format('YYYY-MM-DD')
 })
+
+function hideCalendar() {
+  calendarIsVisible.value = false
+}
+watch(() => calendarValue.value, hideCalendar)
+onClickOutside(calendarRef, hideCalendar)
 </script>
 
 <template>
-  <TheField :error="props.error" :label="props.label" :name="props.name" class="relative">
+  <TheField ref="calendarRef" :error="props.error" :label="props.label" :name="props.name" class="relative">
     <TheButton type="button" class="w-full justify-between" bordered-only-on-bottom no-border-radius @click="calendarIsVisible = !calendarIsVisible">
       {{ displayValue }} <div v-if="calendarIsVisible" i-carbon-caret-up /><div v-else i-carbon-caret-down />
     </TheButton>
