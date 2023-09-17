@@ -57,7 +57,13 @@ function toggleOptions() {
 
 <template>
   <TheField :error="props.error" :label="props.label" :name="props.name" class="relative">
-    <TheButton type="button" class="w-full justify-between rounded-none" bordered-only-on-bottom no-border-radius @click="toggleOptions">
+    <TheButton
+      type="button"
+      class="w-full justify-between rounded-none"
+      bordered-only-on-bottom
+      no-border-radius
+      @click="toggleOptions"
+    >
       <input
         v-if="optionsAreVisible"
         id="search-input"
@@ -73,7 +79,12 @@ function toggleOptions() {
     </TheButton>
     <transition>
       <ul v-if="optionsAreVisible" class="absolute z-1 w-full bg-white shadow">
-        <li v-for="(option, index) in filteredOptions" :key="index" class="cursor-pointer pa-2 hover:bg-gray-300 dark:text-gray-900" @click="sendSelection(option.value)">
+        <li
+          v-for="(option, index) in filteredOptions"
+          :key="index"
+          class="cursor-pointer pa-2 hover:bg-gray-300 dark:text-gray-900"
+          @click="sendSelection(option.value)"
+        >
           {{ option.label }}
         </li>
       </ul>
