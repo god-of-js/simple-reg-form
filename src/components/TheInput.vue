@@ -30,7 +30,7 @@ const inputValue = computed({
       v-model="inputValue"
       :type="props.type"
       v-bind="$attrs"
-      class="app-border w-full b-0 b-b-1 text-left text-3" :class="[{ 'b-red': !!props.error }]"
+      class="w-full b-0 b-b-1 text-left text-3 app-border" :class="[{ 'b-red': !!props.error }]"
       p="y-1"
       bg="transparent"
       outline="none active:none"
