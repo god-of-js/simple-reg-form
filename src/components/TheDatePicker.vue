@@ -23,7 +23,7 @@ const calendarValue = computed({
 })
 
 const displayValue = computed(() => {
-  return props.modelValue.format('YYYY-MM-DD')
+  return props.modelValue.format('YYYY-MM-DD') || 'Select Date'
 })
 
 function hideCalendar() {
